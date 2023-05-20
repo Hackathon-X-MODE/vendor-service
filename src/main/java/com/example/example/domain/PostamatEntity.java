@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@Table(name = "postamat")
+@Table(name = "postamat", uniqueConstraints = @UniqueConstraint(columnNames = {"external_id", "vendor_id"}, name = "external_id_unique"))
 @Entity
 @ToString
 @Accessors(chain = true)

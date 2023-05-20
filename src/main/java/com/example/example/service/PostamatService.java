@@ -59,4 +59,13 @@ public class PostamatService {
     public void delete(UUID id) {
         this.postamatRepository.deleteById(id);
     }
+
+    @Transactional(readOnly = true)
+    public PostamatDto getByExternalId(UUID vendorId, String externalId) {
+        return this.postamatMapper.toDto(
+                this.postamatRepository.findByVendor_IdAndExternalId(vendorId, externalId).orElseThrow(
+                        () -> new EntityNotFoundException("Can't find postamat by externalId " + externalId + " at " + vendorId)
+                )
+        );
+    }
 }

@@ -59,9 +59,19 @@ public class VendorService {
     }
 
 
+    @Transactional(readOnly = true)
     public List<VendorDto> getAll() {
         return this.vendorRepository.findAll()
                 .stream().map(this.vendorMapper::toDto)
                 .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public VendorDto getByCode(String code) {
+        return this.vendorMapper.toDto(this.vendorRepository.findByCode(code)
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Can't find vendor by code " + code)
+                )
+        );
     }
 }

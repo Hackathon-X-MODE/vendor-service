@@ -11,8 +11,5 @@ import java.util.UUID;
 @Repository
 public interface PostamatRepository extends JpaRepository<PostamatEntity, UUID> {
 
-    Optional<PostamatEntity> findByExternalId(String externalId);
-
-
-    List<PostamatEntity> findAllByVendor_Id(UUID vendorId);
+    Optional<PostamatEntity> findByVendor_IdAndExternalId(UUID vendorId, String externalId);
 }

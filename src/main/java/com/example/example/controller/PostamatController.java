@@ -48,4 +48,11 @@ public class PostamatController {
     public void delete(@PathVariable("vendorId") UUID vendorId, @PathVariable("postamatId") UUID postamatId) {
         this.postamatService.delete(postamatId);
     }
+
+
+    @Operation(summary = "Получить Постамат вендора по его Коду")
+    @GetMapping("/externalIds/{externalId}")
+    public PostamatDto byCode(@PathVariable("vendorId") UUID vendorId, @PathVariable("externalId") String externalId) {
+        return this.postamatService.getByExternalId(vendorId,externalId);
+    }
 }

@@ -27,7 +27,7 @@ public class VendorController {
 
     @Operation(description = "Обновление")
     @PatchMapping("{vendorId}")
-    public VendorDto create(
+    public VendorDto update(
             @PathVariable("vendorId") UUID vendorId,
             @RequestBody VendorDto vendor) {
         return this.vendorService.update(vendorId, vendor);
@@ -37,6 +37,12 @@ public class VendorController {
     @GetMapping
     public List<VendorDto> vendors() {
         return this.vendorService.getAll();
+    }
+
+    @Operation(summary = "Получить вендора по его Коду")
+    @GetMapping("/codes/{code}")
+    public VendorDto byCode(@PathVariable("code") String code) {
+        return this.vendorService.getByCode(code);
     }
 
     @Operation(description = "Удаление вендора")
