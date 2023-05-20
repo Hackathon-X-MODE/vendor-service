@@ -33,6 +33,13 @@ public class VendorController {
         return this.vendorService.update(vendorId, vendor);
     }
 
+    @Operation(description = "Получение по ID")
+    @GetMapping("{vendorId}")
+    public VendorDto get(
+            @PathVariable("vendorId") UUID vendorId) {
+        return this.vendorService.getDto(vendorId);
+    }
+
     @Operation(description = "Получение всех вендоров")
     @GetMapping
     public List<VendorDto> vendors() {
