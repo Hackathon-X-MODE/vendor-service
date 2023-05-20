@@ -12,4 +12,7 @@ import java.util.UUID;
 public interface PostamatRepository extends JpaRepository<PostamatEntity, UUID> {
 
     Optional<PostamatEntity> findByVendor_IdAndExternalId(UUID vendorId, String externalId);
+
+
+    List<PostamatEntity> findAllByVendor_Id(UUID vendorId);
 }
