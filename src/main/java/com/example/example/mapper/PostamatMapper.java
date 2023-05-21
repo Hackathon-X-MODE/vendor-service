@@ -1,6 +1,6 @@
 package com.example.example.mapper;
 
-import com.example.example.config.MapperConfiguration;
+import com.example.example.configuration.MapperConfiguration;
 import com.example.example.domain.PostamatEntity;
 import com.example.example.model.PostamatDto;
 import org.mapstruct.Mapper;

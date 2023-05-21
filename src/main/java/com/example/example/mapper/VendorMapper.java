@@ -1,6 +1,6 @@
 package com.example.example.mapper;
 
-import com.example.example.config.MapperConfiguration;
+import com.example.example.configuration.MapperConfiguration;
 import com.example.example.domain.VendorEntity;
 import com.example.example.model.VendorDto;
 import org.mapstruct.*;
