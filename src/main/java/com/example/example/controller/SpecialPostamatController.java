@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("postamats")
+@RequestMapping("postamates")
 @RequiredArgsConstructor
 public class SpecialPostamatController {
 
