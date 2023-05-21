@@ -12,12 +12,15 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 public interface PostamatMapper {
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "vendor", ignore = true)
     PostamatEntity toEntity(PostamatDto postamatDto);
 
 
+    @Mapping(target = "vendorId", source = "vendor.id")
     PostamatDto toDto(PostamatEntity postamatEntity);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "vendor", ignore = true)
     @Mapping(target = "externalId", source = "externalId", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "location", source = "location", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "size", source = "size", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

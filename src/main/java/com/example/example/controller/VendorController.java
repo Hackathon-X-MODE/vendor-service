@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @RestController
@@ -18,7 +19,7 @@ public class VendorController {
     private final VendorService vendorService;
 
     @Operation(description = "Создание")
-    @PostMapping()
+    @PostMapping
     public VendorDto create(
             @RequestBody VendorDto vendorDto) {
         return this.vendorService.create(vendorDto);
@@ -38,6 +39,13 @@ public class VendorController {
     public VendorDto get(
             @PathVariable("vendorId") UUID vendorId) {
         return this.vendorService.getDto(vendorId);
+    }
+
+    @Operation(description = "Получение по списку ID")
+    @PostMapping("/list")
+    public List<VendorDto> get(
+            @RequestBody Set<UUID> vendorIds) {
+        return this.vendorService.getDto(vendorIds);
     }
 
     @Operation(description = "Получение всех вендоров")

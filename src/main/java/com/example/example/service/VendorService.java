@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -56,6 +57,11 @@ public class VendorService {
         return this.vendorMapper.toDto(
                 this.get(id)
         );
+    }
+
+    @Transactional(readOnly = true)
+    public List<VendorDto> getDto(Collection<UUID> ids) {
+        return this.vendorRepository.findAllById(ids).stream().map(this.vendorMapper::toDto).toList();
     }
 
 

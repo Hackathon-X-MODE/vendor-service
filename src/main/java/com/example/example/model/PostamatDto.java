@@ -20,6 +20,8 @@ import java.util.UUID;
 public class PostamatDto {
     private UUID id;
 
+    private UUID vendorId;
+
     private String externalId;
 
     private Location location;
