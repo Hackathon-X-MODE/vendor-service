@@ -60,6 +60,13 @@ public class PostamatService {
         return this.postamatMapper.toDto(this.get(id));
     }
 
+    @Transactional(readOnly = true)
+    public List<PostamatDto> getDto(){
+        return this.postamatRepository.findAll()
+                .stream().map(this.postamatMapper::toDto)
+                .toList();
+    }
+
     @Transactional
     public void delete(UUID id) {
         this.postamatRepository.deleteById(id);

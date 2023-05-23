@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -22,5 +23,11 @@ public class SpecialPostamatController {
     @GetMapping("{postamatId}")
     public PostamatDto get(@PathVariable("postamatId") UUID postamatId) {
         return this.postamatService.getDto(postamatId);
+    }
+
+    @Operation(description = "Получение всех постаматов")
+    @GetMapping
+    public List<PostamatDto> get() {
+        return this.postamatService.getDto();
     }
 }
