@@ -6,6 +6,7 @@ import com.example.example.mapper.VendorMapper;
 import com.example.example.model.VendorDto;
 import com.example.example.repository.VendorRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -67,7 +68,9 @@ public class VendorService {
 
     @Transactional(readOnly = true)
     public List<VendorDto> getAll() {
-        return this.vendorRepository.findAll()
+        return this.vendorRepository.findAll(
+                        Sort.by("id").ascending()
+                )
                 .stream().map(this.vendorMapper::toDto)
                 .toList();
     }
