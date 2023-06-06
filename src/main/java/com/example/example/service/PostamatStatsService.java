@@ -19,7 +19,7 @@ public class PostamatStatsService {
 
         return PostamatStat.builder()
                 .availableSlots(postamat.getSize())
-                .takenSlots(this.orderClient.filter(postamatId,"DELIVERED").getTotalElements())
+                .takenSlots(this.orderClient.filter(postamatId,"DELIVERED"))
                 .build();
 
     }
