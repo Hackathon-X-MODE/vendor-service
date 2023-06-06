@@ -1,7 +1,9 @@
 package com.example.example.controller;
 
 import com.example.example.model.PostamatDto;
+import com.example.example.model.stats.PostamatStat;
 import com.example.example.service.PostamatService;
+import com.example.example.service.PostamatStatsService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +21,8 @@ public class SpecialPostamatController {
 
     private final PostamatService postamatService;
 
+    private final PostamatStatsService postamatStatsService;
+
     @Operation(description = "Получение постамата по его ID")
     @GetMapping("{postamatId}")
     public PostamatDto get(@PathVariable("postamatId") UUID postamatId) {
@@ -29,5 +33,12 @@ public class SpecialPostamatController {
     @GetMapping
     public List<PostamatDto> get() {
         return this.postamatService.getDto();
+    }
+
+
+    @Operation(description = "Получение постамата по его ID")
+    @GetMapping("{postamatId}/stats")
+    public PostamatStat getStats(@PathVariable("postamatId") UUID postamatId) {
+        return this.postamatStatsService.getStats(postamatId);
     }
 }
