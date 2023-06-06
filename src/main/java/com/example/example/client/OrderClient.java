@@ -1,12 +1,12 @@
 package com.example.example.client;
 
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
@@ -26,8 +26,8 @@ public class OrderClient {
     }
 
 
-    public Page<Object> filter(UUID postamatId, String status) {
-        return Objects.requireNonNull(this.webClient.get()
+    public long filter(UUID postamatId, String status) {
+        var value = Objects.requireNonNull(this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/")
                         .queryParam("status", status)
                         .queryParam("postamatId", postamatId)
@@ -36,8 +36,9 @@ public class OrderClient {
                         .build()
                 )
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<Page<Object>>() {
+                .bodyToMono(new ParameterizedTypeReference<Map<Object, Object>>() {
                 })
                 .block());
+        return Long.parseLong(String.valueOf(value.get("totalElements")));
     }
 }
