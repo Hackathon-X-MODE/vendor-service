@@ -21,7 +21,7 @@ public interface PostamatRepository extends JpaRepository<PostamatEntity, UUID>,
     default List<PostamatEntity> findAll(PostamatFilter filter) {
         var spec = Specification.<PostamatEntity>where(null);
 
-        if (CollectionUtils.isEmpty(filter.getVendors())) {
+        if (!CollectionUtils.isEmpty(filter.getVendors())) {
             spec = spec.and(
                     (root, query, criteriaBuilder) ->
                             root.join("vendor").get("id").in(filter.getVendors())
