@@ -6,6 +6,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.CollectionUtils;
 
 import java.util.*;
 
@@ -20,7 +21,7 @@ public interface PostamatRepository extends JpaRepository<PostamatEntity, UUID>,
     default List<PostamatEntity> findAll(PostamatFilter filter) {
         var spec = Specification.<PostamatEntity>where(null);
 
-        if (Objects.nonNull(filter.getVendors())) {
+        if (CollectionUtils.isEmpty(filter.getVendors())) {
             spec = spec.and(
                     (root, query, criteriaBuilder) ->
                             root.join("vendor").get("id").in(filter.getVendors())
