@@ -4,6 +4,7 @@ import com.example.example.domain.PostamatEntity;
 import com.example.example.exception.EntityNotFoundException;
 import com.example.example.mapper.PostamatMapper;
 import com.example.example.model.PostamatDto;
+import com.example.example.model.PostamatFilter;
 import com.example.example.repository.PostamatRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -61,8 +62,8 @@ public class PostamatService {
     }
 
     @Transactional(readOnly = true)
-    public List<PostamatDto> getDto(){
-        return this.postamatRepository.findAll()
+    public List<PostamatDto> getDto(PostamatFilter filter){
+        return this.postamatRepository.findAll(filter)
                 .stream().map(this.postamatMapper::toDto)
                 .toList();
     }

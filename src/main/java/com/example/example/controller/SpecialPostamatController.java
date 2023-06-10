@@ -1,6 +1,7 @@
 package com.example.example.controller;
 
 import com.example.example.model.PostamatDto;
+import com.example.example.model.PostamatFilter;
 import com.example.example.model.stats.PostamatStat;
 import com.example.example.service.PostamatService;
 import com.example.example.service.PostamatStatsService;
@@ -31,8 +32,8 @@ public class SpecialPostamatController {
 
     @Operation(description = "Получение всех постаматов")
     @GetMapping
-    public List<PostamatDto> get() {
-        return this.postamatService.getDto();
+    public List<PostamatDto> get(PostamatFilter filter) {
+        return this.postamatService.getDto(filter);
     }
 
 
