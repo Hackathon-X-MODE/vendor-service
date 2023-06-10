@@ -16,6 +16,8 @@ public class PostamatFilter {
 
     private List<UUID> vendors;
 
+    private UUID postamatId;
+
     private String address;
 
     private Integer sizeAt;

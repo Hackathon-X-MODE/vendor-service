@@ -29,6 +29,16 @@ public interface PostamatRepository extends JpaRepository<PostamatEntity, UUID>,
             );
         }
 
+        if (Objects.nonNull(filter.getPostamatId())) {
+            spec = spec.and(
+                    (root, query, criteriaBuilder) ->
+                            criteriaBuilder.equal(
+                                    root.get("id"),
+                                    filter.getPostamatId()
+                            )
+            );
+        }
+
         if (Objects.nonNull(filter.getAddress())) {
             final var value = "%" + filter.getAddress().toLowerCase(Locale.ROOT) + "%";
             spec = spec.and(
